@@ -1,0 +1,38 @@
+{
+  "name": "node-gnip",
+  "version": "0.0.1",
+  "author": "Beyounic <info@beyounic.com>",
+  "description": "A node.js server that proxies GNIP services over socket.io",
+  "contributors": [
+    {
+      "name": "Matteo Agosti",
+      "email": "matteo@beyounic.com"
+    }
+  ],
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "main": "app.js",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/beyounic/node-gnip-powertrack.git"
+  },
+  "keywords": [
+    "gnip",
+    "twitter",
+    "server",
+    "socket"
+  ],  
+  "dependencies": {
+    "request": "2.12.x",
+    "socket.io": "0.9.x"
+  },
+  "devDependencies": {
+    "mocha": "1.7.x",
+    "socket.io-client": "0.9.x"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.8"
+  }
+}
