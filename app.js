@@ -1,8 +1,16 @@
 var config = require('./config'),
     io = require('socket.io').listen(config.server.port),
     gnip = require('./lib/gnip'),
-    powerTrack = new gnip.PowerTrack(config.gnip),
-    rulesAPI = new gnip.RulesAPI(config.gnip);
+    powerTrack = new gnip.PowerTrack({
+      apiUrl: config.gnip.powerTrackUrl,
+      username: config.gnip.username,
+      password: config.gnip.password
+    }),
+    rulesAPI = new gnip.RulesAPI({
+      apiUrl: config.gnip.rulesAPIUrl,
+      username: config.gnip.username,
+      password: config.gnip.password
+    });
 
 io.configure(function() {
   io.set('transports', ['websocket']);

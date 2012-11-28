@@ -1,6 +1,7 @@
 module.exports = {
   gnip: {
-    streamUrl: 'https://stream.gnip.com:443/accounts/XYZ/publishers/twitter/streams/track/Production.json',
+    powerTrackUrl: 'https://stream.gnip.com:443/accounts/XYZ/publishers/twitter/streams/track/Production.json',
+    rulesAPIUrl: 'https://stream.gnip.com:443/accounts/XYZ/publishers/twitter/streams/track/Production/rules.json',
     username: '',
     password: ''
   },
