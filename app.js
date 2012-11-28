@@ -22,13 +22,13 @@ powerTrack.on('data', function(data) {
       i,
       len,
       tag;
-  
+
   io.of('/stream').emit('data', data);
   for (i = 0, len = rules.length; i < len; i++) {
     tag = rules[i].tag;
     if (tag)
       io.of('/stream/' + tag).emit('data', data);
-  } 
+  }
 }).on('error', function(error) {
   console.log(error);
 }).on('fail', function() {
