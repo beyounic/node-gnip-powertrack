@@ -38,15 +38,11 @@ io.of('/rules').on('connection', function(socket) {
 
 io.of('/stream').on('connection', function(socket) { });
 
+powerTrack.on('data', function(data) {
   io.of('/stream').emit('data', data);
-  for (i = 0, len = rules.length; i < len; i++) {
-    tag = rules[i].tag;
-    if (tag)
-      io.of('/stream/' + tag).emit('data', data);
-  }
 }).on('error', function(error) {
-  console.log(error);
+  io.of('/stream').emit('error', error);
 }).on('fail', function() {
-  console.log('fail');
+  io.of('/stream').emit('fail');
 });
 powerTrack.start();
