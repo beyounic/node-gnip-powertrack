@@ -1,5 +1,5 @@
 var config = require('./config'),
-    io = require('socket.io').listen(config.server.port),
+    io = require('socket.io').listen(config.server.port || 5000),
     gnip = require('./lib/gnip'),
     powerTrack = new gnip.PowerTrack({
       apiUrl: config.gnip.powerTrackUrl,
