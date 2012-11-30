@@ -10,6 +10,7 @@
     }
   ],
   "scripts": {
+    "start": "node app.js",
     "test": "mocha --reporter spec"
   },
   "main": "app.js",
