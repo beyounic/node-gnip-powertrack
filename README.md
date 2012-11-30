@@ -62,3 +62,28 @@ In order to access RulesAPI you simply have to connect to the `/rules` namespace
 * `client.emit('get', function(error, data) { … })`: asks for active rules. If an error occurs the `error` argument will contain an `Error` object, otherwise the `data` argument will contain the object representation of Gnip rules.
 * `client.emit('add', rules, function(error) { … })`: asks for adding the given set of `rules` according to the Gnip rules specification format. If an error occurs the `error` argument will contain an `Error` object, otherwise it will be `null`.
 * `client.emit('remove', rules, function(error) { … })`: asks for removing the given set of `rules` according to the Gnip rules specification format. If an error occurs the `error` argument will contain an `Error` object, otherwise it will be `null`.
+
+# License
+
+(The MIT License)
+
+Copyright (c) 2012 Beyounic, info@beyounic.com
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
