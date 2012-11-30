@@ -3,7 +3,7 @@ node-gnip-powertrack
 
 A node.js server that proxies Gnip PowerTrack and RulesAPI over socket.io. An exponential backoff algorithm handles reconnection in case of errors.
 
-# Installation
+## Installation
 
 Clone the repository and install all dependencies using `npm`
 
@@ -29,7 +29,7 @@ module.exports = {
 };
 ```
 
-# Execution and testing
+## Execution and testing
 
 To run the server simply use `npm`
 
@@ -43,11 +43,11 @@ If you want to run tests please ensure first to have the server running and then
 npm test
 ```
 
-# Usage
+## Usage
 
 The server runs a socket on port `5000` (unless overridden in the config file) and provides two namespaces `/stream` for the PowerTrack and `/rules` for the RulesAPI.
 
-## PowerTrack
+### PowerTrack
 
 In order to access PowerTrack you simply have to connect to the `/stream` namespace. All incoming data will be broadcasted to this namespace. There are three types of event that can be emitted by the server:
 
@@ -55,7 +55,7 @@ In order to access PowerTrack you simply have to connect to the `/stream` namesp
 * `server.emit('error', error)`: emitted everytime an error occurs. The argument `error` contains an `Error` object. After emitting the event the server handles a reconnection to PowerTrack using an exponential backoff algorithm
 * `server.emit('fail')`: emitted when the maximum number of backoff attempts is reached. When this happens, the server is hanging with no connection to the PowerTrack and waits for manual recovery.
 
-## RulesAPI
+### RulesAPI
 
 In order to access RulesAPI you simply have to connect to the `/rules` namespace. The server will listen to three types of event that a client can emit; with every emission the client must specify a callback function that will be executed (on the client) once the server responds (this is the aknowledgement pattern of socket.io)
 
@@ -63,7 +63,7 @@ In order to access RulesAPI you simply have to connect to the `/rules` namespace
 * `client.emit('add', rules, function(error) { … })`: asks for adding the given set of `rules` according to the Gnip rules specification format. If an error occurs the `error` argument will contain an `Error` object, otherwise it will be `null`.
 * `client.emit('remove', rules, function(error) { … })`: asks for removing the given set of `rules` according to the Gnip rules specification format. If an error occurs the `error` argument will contain an `Error` object, otherwise it will be `null`.
 
-# License
+## License
 
 (The MIT License)
 
