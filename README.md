@@ -15,6 +15,8 @@ npm install
 
 Copy `config-sample.js` into `config.js` end edit it by adding your Gnip PowerTrack url, RulesAPI url and your credentials. Additionally you can also specify the socket.io port on which the server will be listening (default is `5000`).
 
+When using the normalized stream format, you also have access to rules that generated a specific activity. To prevent overflows you can optionally rate limit rules. If rate limiting is on, every `interval` milliseconds for every rule that generated at least an activity the system will evaluate the volume of activities being generated; all rules with a volumne greater than `max` will be removed and an `overflow` event will be emitted.
+
 ```javascript
 module.exports = {
   gnip: {
@@ -24,7 +26,11 @@ module.exports = {
     password: ''
   },
   server: {
-    port: 5000
+    port: 5000,
+    rate: {             // Optional rate limiting (works only when using normalized stream)
+      max: 20,          // If a rule generates a number > [max] activities
+      interval: 30000   // within [interval] (in milliseconds) it will be removed
+    }
   }
 };
 ```
@@ -52,6 +58,7 @@ The server runs a socket on port `5000` (unless overridden in the config file) a
 In order to access PowerTrack you simply have to connect to the `/stream` namespace. All incoming data will be broadcasted to this namespace. There are three types of event that can be emitted by the server:
 
 * `server.emit('data', data)`: emitted everytime a new activity is available. The argument `data` contains the objectified Gnip activity according to the output format you specified in the stream configuration (normalized or original).
+* `server.emit('overflow', data)`: emitted everytime a set of rules exceeds rate limiting (as specified in the configuration file) and immediately after these rules get removed from PowerTrack. The argument `data` contains the objectified set of rules being removed.
 * `server.emit('error', error)`: emitted everytime an error occurs. The argument `error` contains an `Error` object. After emitting the event the server handles a reconnection to PowerTrack using an exponential backoff algorithm
 * `server.emit('fail')`: emitted when the maximum number of backoff attempts is reached. When this happens, the server is hanging with no connection to the PowerTrack and waits for manual recovery.
 
