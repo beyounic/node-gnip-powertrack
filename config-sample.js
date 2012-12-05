@@ -7,7 +7,9 @@ module.exports = {
   },
   server: {
     port: 5000,
-    rate: {             // Optional rate limiting (works only when using normalized stream)
+
+    // Optional
+    rate: {             // Rate limiting (works only when using normalized stream)
       max: 20,          // If a rule generates a number > [max] activities
       interval: 30000   // within [interval] (in milliseconds) it will be removed
     }
