@@ -1,6 +1,6 @@
 {
   "name": "node-gnip",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Beyounic <info@beyounic.com>",
   "description": "A node.js server that proxies GNIP services over socket.io",
   "contributors": [
