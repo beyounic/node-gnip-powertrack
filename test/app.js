@@ -84,4 +84,27 @@ describe('App', function() {
       });
     });
   });
+
+  if (config.server.rate) {
+    // this test assumes you have reasonable values for server rate limiting
+    // in config file as to prevent expensive bills!
+    it('should add an high volume rule and go in overflow', function(done) {
+      var stream = io.connect(appUrl + '/stream', {'force new connection': true}),
+          rulesAPI = io.connect(appUrl + '/rules', {'force new connection': true});
+
+      this.timeout(30000);
+      stream.on('overflow', function(data) {
+        var i, len;
+        for (i = 0, len = data.length; i < len; i++) {
+          if (data[i].value === '@mashable') {
+            done();
+            break;
+          }
+        }
+      });
+      rulesAPI.on('connect', function() {
+        rulesAPI.emit('add', {rules: [{value: '@mashable'}]});
+      });
+    });
+  }
 });
